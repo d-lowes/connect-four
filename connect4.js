@@ -16,7 +16,9 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
-//TODO:use arrayFrom method
+
+// TODO: use Array.from() method
+
 function makeBoard() {
   for (let y = 0; y < HEIGHT; y++) {
     let columns = [];
@@ -77,6 +79,9 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const gamePiece = document.createElement('div');
+  gamePiece.classList.add('piece', `p${currPlayer}`);
+  tableCell.append(gamePiece);
 }
 
 /** endGame: announce game end */
