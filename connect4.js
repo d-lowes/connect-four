@@ -11,17 +11,15 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
-
+//TODO:use arrayFrom method
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-
   for (let y = 0; y < HEIGHT; y++) {
-    const columns = [];
+    let columns = [];
 
     for (let x = 0; x < WIDTH; x++) {
       columns.push(null);
@@ -36,14 +34,12 @@ function makeBoard() {
 function makeHtmlBoard() {
   const htmlBoard = document.getElementById("board");
 
-  // TODO: add comment for this code
-  //this is the "drop zone" part where players click to add their piece
+  //adds "drop zone" part where players click to add their piece
   const topRow = document.createElement("tr");
   topRow.setAttribute("id", "column-top");
   topRow.addEventListener("click", handleClick);
 
-  // TODO: add comment for this code
-  //this adds the individual cells to the top row
+  // adds the individual cells to the top row
   for (let x = 0; x < WIDTH; x++) {
     const headCell = document.createElement("td");
     headCell.setAttribute("id", `top-${x}`);
@@ -55,21 +51,17 @@ function makeHtmlBoard() {
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
-    // TODO: Create a table row element and assign to a "row" variable
     const gameBoardRow = document.createElement("tr");
 
     for (let x = 0; x < WIDTH; x++) {
-      // TODO: Create a table cell element and assign to a "cell" variable
       const tableCell = document.createElement("td"); //table cell
 
-      // TODO: add an id, c-y-x, to the above table cell element
       // you'll use this later, so make sure you use c-y-x
       tableCell.setAttribute("id", `c-${y}-${x}`);
 
-      // TODO: append the table cell to the table row
       gameBoardRow.append(tableCell);
     }
-    // TODO: append the row to the html board
+
     htmlBoard.append(gameBoardRow);
   }
 }
