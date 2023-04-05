@@ -19,6 +19,18 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+
+  for (let y = 0; y < HEIGHT; y++) {
+
+    const columns = [];
+
+    for (let x = 0; x < WIDTH; x++) {
+
+      columns.push(null);
+    }
+
+    board.push(columns);
+  }
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
