@@ -96,7 +96,8 @@ function placeInTable(y, x) {
   const gamePiece = document.createElement("div");
   const tableCell = document.getElementById(`c-${y}-${x}`);
 
-  gamePiece.classList.add("piece", `p${currPlayer}`);
+  gamePiece.classList.add("piece");
+  gamePiece.classList.add(`p${currPlayer}`);
   tableCell.append(gamePiece);
 }
 
@@ -111,10 +112,10 @@ function endGame(msg) {
 function handleClick(evt) {
   // get x from ID of clicked cell
   const x = Number(evt.target.id.slice("top-".length));
-  console.log("handleCLick x=", x);
 
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
+
   if (y === null) {
     return;
   }
@@ -129,16 +130,17 @@ function handleClick(evt) {
   if (checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
   }
+  console.log('here');
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
   if (board[0].every((cell) => cell !== null)) {
     endGame("Game over!");
   }
-
+  console.log('also here');
   // switch players
   // TODO: switch currPlayer 1 <-> 2
-  currPlayer === 1 ? (currPlayer = 2) : (currPlayer = 1);
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -178,11 +180,29 @@ function checkForWin() {
         [y, x],
         [y, x + 1],
         [y, x + 2],
-        [y, x + 3],
+        [y, x + 3]
       ];
-      let vert;
-      let diagDL;
-      let diagDR;
+
+      let vert = [
+      [y, x],
+      [y + 1, x],
+      [y + 2, x],
+      [y + 3, x]
+      ];
+
+      let diagDL = [
+        [y, x],
+        [y + 1, x - 1],
+        [y + 2, x - 2],
+        [y + 3, x - 3]
+        ];
+
+      let diagDR = [
+        [y, x],
+        [y + 1, x + 1],
+        [y + 2, x + 2],
+        [y + 3, x + 3]
+        ];
 
       // find winner (only checking each win-possibility as needed)
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
