@@ -100,6 +100,7 @@ function placeInTable(y, x) {
 function endGame(msg) {
   setTimeout(() => {
     alert(msg);
+    window.location.reload();
   }, 100);
 }
 
@@ -123,14 +124,14 @@ function handleClick(evt) {
 
   // check for win
   if (checkForWin()) {
-    return endGame(`Player ${currPlayer} won!`);
+    return endGame(`Player ${currPlayer} won! Click OK to play again.`);
   }
 
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
   if (board[0].every((cell) => cell !== null)) {
-    endGame("Game over!");
+    endGame('Game over! Click OK to play again.');
   }
 
   // switch players
