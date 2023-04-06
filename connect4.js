@@ -97,7 +97,9 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  alert(`GAME OVER! PLAYER ${currPlayer} WINS!`)
+  setTimeout(() => {
+    alert(`GAME OVER! PLAYER ${currPlayer} WINS!`);
+  }, 100);
 }
 
 /** handleClick: handle click of column top to play piece */
