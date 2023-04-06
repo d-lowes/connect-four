@@ -47,6 +47,7 @@ function makeHtmlBoard() {
     headCell.setAttribute("id", `top-${x}`);
     topRow.append(headCell);
   }
+
   htmlBoard.append(topRow);
 
   // dynamically creates the main part of html board
@@ -150,9 +151,11 @@ function checkForWin() {
     for (let i = 0; i < cells.length; i++) {
       let y = cells[i][0];
       let x = cells[i][1];
+
       if (y < 0 || y >= HEIGHT || x < 0 || x >= WIDTH) {
         return false;
       }
+
       if (board[y][x] !== currPlayer) {
         return false;
       }
