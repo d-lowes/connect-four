@@ -130,14 +130,14 @@ function handleClick(evt) {
   if (checkForWin()) {
     return endGame(`Player ${currPlayer} won!`);
   }
-  console.log('here');
+
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
   if (board[0].every((cell) => cell !== null)) {
     endGame("Game over!");
   }
-  console.log('also here');
+
   // switch players
   // TODO: switch currPlayer 1 <-> 2
   currPlayer = currPlayer === 1 ? 2 : 1;
@@ -152,18 +152,20 @@ function checkForWin() {
    * currPlayer
    */
   function _win(cells) {
-    // TODO: Check four cells to see if they're all legal & all color of current
-    // player
+
     for (let i = 0; i < cells.length; i++) {
       let y = cells[i][0];
       let x = cells[i][1];
-
+      if (y < 0 || y >= HEIGHT || x < 0 || x >= WIDTH) {
+        return false;
+      }
       if (board[y][x] !== currPlayer) {
         return false;
       }
     }
 
     return true;
+
   }
 
   // using HEIGHT and WIDTH, generate "check list" of coordinates
