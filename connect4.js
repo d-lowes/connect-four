@@ -72,27 +72,20 @@ function makeHtmlBoard() {
 
 //x is not descriptive
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 5
-  //input: a number (the column number)
-  //output: first index position where null is found OR null not positions available
-
-  //access the column indicated by X, column with index 0-5 in the matrix
   for (let y = HEIGHT-1; y >= 0; y--) {
+
     if (board[y][x] === null) {
+
       return y;
     }
   }
 
   return null;
-  //check if the column contains any null values....
-
-  //return open position or null depending on logic
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
   const gamePiece = document.createElement("div");
   const tableCell = document.getElementById(`c-${y}-${x}`);
 
@@ -104,7 +97,6 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  // TODO: pop up alert message
   alert(`GAME OVER! PLAYER ${currPlayer} WINS!`)
 }
 
@@ -122,7 +114,6 @@ function handleClick(evt) {
   }
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
   board[y][x] = currPlayer;
 
   placeInTable(y, x);
@@ -187,10 +178,10 @@ function checkForWin() {
       ];
 
       let vert = [
-      [y, x],
-      [y + 1, x],
-      [y + 2, x],
-      [y + 3, x]
+        [y, x],
+        [y + 1, x],
+        [y + 2, x],
+        [y + 3, x]
       ];
 
       let diagDL = [
@@ -198,14 +189,14 @@ function checkForWin() {
         [y + 1, x - 1],
         [y + 2, x - 2],
         [y + 3, x - 3]
-        ];
+      ];
 
       let diagDR = [
         [y, x],
         [y + 1, x + 1],
         [y + 2, x + 2],
         [y + 3, x + 3]
-        ];
+      ];
 
       // find winner (only checking each win-possibility as needed)
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
