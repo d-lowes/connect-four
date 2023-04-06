@@ -72,7 +72,13 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 5
-  return 5;
+let y = x.lastIndexOf(null);
+
+if (y !== -1) {
+  return y;
+} else {
+  return null;
+  }
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
