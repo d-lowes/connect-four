@@ -70,15 +70,23 @@ function makeHtmlBoard() {
 
 /** findSpotForCol: given column x, return bottom empty y (null if filled) */
 
+//x is not descriptive
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 5
-let y = x.lastIndexOf(null);
+  //input: a number (the column number)
+  //output: first index position where null is found OR null not positions available
 
-if (y !== -1) {
-  return y;
-} else {
-  return null;
+  //access the column indicated by X, column with index 0-5 in the matrix
+  for (let y = HEIGHT-1; y >= 0; y--) {
+    if (board[y][x] === null) {
+      return y;
+    }
   }
+
+  return null;
+  //check if the column contains any null values....
+
+  //return open position or null depending on logic
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -103,6 +111,7 @@ function endGame(msg) {
 function handleClick(evt) {
   // get x from ID of clicked cell
   const x = Number(evt.target.id.slice("top-".length));
+  console.log("handleCLick x=", x);
 
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
@@ -123,14 +132,13 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
-  if (board.every(cell => cell !== null)) {
-    endGame('Game over!');
+  if (board[0].every((cell) => cell !== null)) {
+    endGame("Game over!");
   }
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
-  currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
-
+  currPlayer === 1 ? (currPlayer = 2) : (currPlayer = 1);
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
