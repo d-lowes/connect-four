@@ -99,7 +99,7 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   setTimeout(() => {
-    alert(`GAME OVER! PLAYER ${currPlayer} WINS!`);
+    alert(msg);
   }, 100);
 }
 
